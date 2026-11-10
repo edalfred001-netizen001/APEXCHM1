@@ -1,2 +1,0 @@
-# APEXCHM1
-APEX ChM EXAM 
