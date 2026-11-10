@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>APEX Tutorials – CHM 101 CBT</title>
+<style>
+:root{--mar:#5a0f1f;--mar2:#3b0912;--gold:#c9a227;--gold2:#f0d77a;--cream:#f7f1e3;--ink:#1a1a1a;--ok:#2e7d4f;--bad:#b3261e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:radial-gradient(circle at 50% 0,#2a2a2a,#050505 70%);color:var(--cream);font-family:Georgia,'Times New Roman',serif;min-height:100vh}
+.wrap{max-width:860px;margin:0 auto;padding:12px}
+header{display:flex;align-items:center;gap:12px;background:linear-gradient(90deg,var(--mar2),var(--mar));border:1px solid var(--gold);border-radius:14px;padding:8px 14px}
+header svg{width:58px;height:58px;flex:none}
+.brand b{font-size:1.25rem;letter-spacing:2px;color:var(--gold2)}.brand small{display:block;color:var(--cream);opacity:.8;font-size:.72rem;letter-spacing:1px}
+#timer{margin-left:auto;text-align:center;background:#000;border:2px solid var(--gold);border-radius:10px;padding:4px 12px;font:700 1.4rem ui-monospace,monospace;color:var(--gold2)}
+#timer small{display:block;font:.6rem Georgia;letter-spacing:1px;color:var(--cream)}#timer.low{color:#ff6b6b;border-color:#ff6b6b;animation:p 1s infinite}
+@keyframes p{50%{opacity:.5}}
+.bar{height:6px;background:#222;border-radius:4px;margin:10px 0;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0}
+.card{background:var(--cream);color:var(--ink);border-radius:14px;padding:18px;border-top:5px solid var(--gold);box-shadow:0 6px 24px #000a}
+.meta{display:flex;justify-content:space-between;color:var(--mar);font-size:.85rem;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.q{font-size:1.15rem;line-height:1.5;margin:12px 0}
+.opt{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;background:#fff;border:2px solid #d9cfb4;border-radius:10px;padding:11px;margin:8px 0;font:inherit;color:var(--ink);cursor:pointer}
+.opt:hover{border-color:var(--gold)}.opt b{flex:none;width:28px;height:28px;border-radius:50%;background:var(--mar);color:var(--gold2);display:grid;place-items:center;font-size:.9rem}
+.opt.sel{background:var(--mar);color:var(--cream);border-color:var(--gold)}.opt.sel b{background:var(--gold);color:var(--mar2)}
+.nav{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.btn{font:700 .95rem Georgia;border:2px solid var(--gold);background:linear-gradient(var(--mar),var(--mar2));color:var(--gold2);padding:10px 18px;border-radius:10px;cursor:pointer}
+.btn.g{background:linear-gradient(var(--gold2),var(--gold));color:var(--mar2)}.btn:disabled{opacity:.4}.sp{flex:1}
+.pal{display:grid;grid-template-columns:repeat(auto-fill,minmax(38px,1fr));gap:6px;margin-top:12px}
+.pal button{padding:8px 0;border-radius:8px;border:1px solid var(--gold);background:#1b1b1b;color:var(--cream);font:inherit;cursor:pointer}
+.pal .done{background:var(--mar);color:var(--gold2)}.pal .cur{outline:2px solid var(--gold2)}
+.pal.r .ok{background:var(--ok)}.pal.r .no{background:var(--bad)}.pal.r .sk{background:#555}
+.hero{text-align:center}.hero svg{width:150px}.hero h1{color:var(--mar);margin:6px 0}
+.rules{text-align:left;max-width:460px;margin:10px auto;line-height:1.7}
+.score{font-size:3rem;color:var(--mar);font-weight:700;text-align:center}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:12px 0}
+.stat{background:#fff;border:1px solid #d9cfb4;border-radius:10px;padding:10px;text-align:center}.stat b{display:block;font-size:1.4rem;color:var(--mar)}
+.cor{background:#fff;border-left:6px solid var(--bad);border-radius:8px;padding:12px;margin:10px 0}.cor.ok{border-color:var(--ok)}
+.cor .tag{font-size:.8rem;font-weight:700}.sol{background:#fbf5e1;border:1px dashed var(--gold);padding:8px;border-radius:8px;margin-top:6px}
+.t{color:var(--mar);font-weight:700;margin-top:14px;border-bottom:2px solid var(--gold)}
+</style></head><body><div class="wrap">
+<header>
+<svg viewBox="0 0 200 200"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0d77a"/><stop offset="1" stop-color="#a77f12"/></linearGradient>
+<path id="t" d="M30,100 A70,70 0 0 1 170,100"/><path id="b" d="M18,100 A82,82 0 0 0 182,100"/></defs>
+<circle cx="100" cy="100" r="96" fill="#d8d8d8"/><circle cx="100" cy="100" r="91" fill="#5a0f1f" stroke="#c9a227" stroke-width="4"/>
+<text font-family="Georgia" font-weight="700" font-size="21" fill="#f7f1e3" letter-spacing="2"><textPath href="#t" startOffset="50%" text-anchor="middle">APEX TUTORIALS</textPath></text>
+<path d="M100 52 L148 138 L128 138 L100 88 L72 138 L52 138Z" fill="url(#g)"/><circle cx="100" cy="118" r="14" fill="#2e7d4f" stroke="#f7f1e3" stroke-width="2"/>
+<text x="100" y="158" text-anchor="middle" font-family="Georgia" font-weight="700" font-size="14" fill="#f0d77a">FUOYE</text>
+<text font-family="Georgia" font-weight="700" font-size="10.5" fill="#f0d77a"><textPath href="#b" startOffset="50%" text-anchor="middle">FACULTY OF SCIENCE / BMS</textPath></text></svg>
+<div class="brand"><b>APEX TUTORIALS</b><small>CHM 101 · CBT SIMULATOR · PARTNERS IN ACADEMIC EXCELLENCE</small></div>
+<div id="timer" style="display:none"><small>TIME LEFT</small><span id="tv">09:00</span></div></header>
+<div id="app"></div></div>
+<script>
+// ---- QUESTION BANK: [question, [A,B,C,D], correctIndex, step-by-step explanation] ----
+const Q=[
+["Which subatomic particle was discovered by J.J. Thomson using cathode ray tube experiments?",["Proton","Neutron","Electron","Positron"],2,"J.J. Thomson discovered the electron in 1897 through cathode ray experiments, calculating its mass-to-charge ratio (e/m)."],
+["Rutherford’s alpha-particle scattering experiment fundamentally proved that:",["electrons are embedded uniformly in a positive sphere","the atom is mostly empty space with a dense, positively charged nucleus","neutrons are located in the outer shells","energy levels are strictly quantized"],1,"Most alpha particles passed straight through gold foil while a small fraction deflected at large angles, so Rutherford concluded the positive charge and mass reside in a tiny nucleus."],
+["Which set of quantum numbers is NOT permissible for an electron in an atom?",["n = 3, l = 2, ml = -2, ms = +1/2","n = 2, l = 0, ml = 0, ms = -1/2","n = 1, l = 1, ml = 0, ms = +1/2","n = 4, l = 3, ml = +1, ms = -1/2"],2,"The azimuthal quantum number l ranges from 0 to (n − 1). For n = 1, l can only be 0 (1s orbital). l = 1 is physically impossible."],
+["The maximum number of electrons that can be accommodated in a principal shell with quantum number n is given by:",["2l + 1","2n²","n²","2(2l + 1)"],1,"A principal shell contains n² orbitals, and each orbital holds up to 2 electrons, giving 2n²."],
+["What is the specific subshell designation for quantum numbers n = 4 and l = 2?",["4s","4p","4d","4f"],2,"l = 0 (s), l = 1 (p), l = 2 (d), l = 3 (f). Thus n = 4, l = 2 gives 4d."],
+["How many radial nodes are present in a 4s atomic orbital?",["0","1","2","3"],3,"Radial nodes = n − l − 1 = 4 − 0 − 1 = 3."],
+["What is the ground-state electronic configuration of Chromium (Z = 24)?",["[Ar] 3d⁴ 4s²","[Ar] 3d⁵ 4s¹","[Ar] 3d⁶ 4s⁰","[Kr] 3d⁵ 4s¹"],1,"Chromium promotes one 4s electron to 3d to gain the extra stability of a half-filled d-subshell: [Ar] 3d⁵ 4s¹."],
+["What is the ground-state electronic configuration of Copper (Z = 29)?",["[Ar] 3d⁹ 4s²","[Ar] 3d¹⁰ 4s¹","[Kr] 3d⁹ 4s²","[Ar] 3d⁸ 4s²"],1,"Copper promotes one 4s electron to 3d to achieve a fully filled d-subshell: [Ar] 3d¹⁰ 4s¹."],
+["How many unpaired electrons are present in a ground-state Nitrogen atom (Z = 7)?",["1","2","3","5"],2,"Configuration is 1s² 2s² 2p³. By Hund's rule, the 3 electrons in 2p occupy separate orbitals (2pₓ¹, 2p_y¹, 2p_z¹) with parallel spins."],
+["Which ion is isoelectronic with Argon (Z = 18)?",["Na⁺","Cl⁻","Mg²⁺","F⁻"],1,"Neutral Chlorine (Z = 17) gains 1 electron to form Cl⁻ (17 + 1 = 18 electrons), matching Argon."],
+["The Pauli Exclusion Principle states that:",["electrons fill lowest energy orbitals first","no two electrons in an atom can have the same set of four quantum numbers","degenerate orbitals are occupied singly before pairing","position and momentum cannot be measured simultaneously"],1,"If two electrons share n, l and ml, they must have opposite spins (ms = +1/2 and −1/2)."],
+["According to de Broglie's equation, the wavelength (λ) of a moving particle is given by:",["λ = h / (mv)","λ = (mv) / h","λ = hmv","λ = h / (m²v)"],0,"De Broglie related momentum (p = mv) to matter wavelength: λ = h / p = h / (mv)."],
+["The electron transitions down to n = 2 in a Hydrogen atom produce which spectral series?",["Lyman series","Balmer series","Paschen series","Brackett series"],1,"Transitions ending at n = 1 form the Lyman series (UV); transitions ending at n = 2 form the Balmer series (visible)."],
+["Which rule dictates that electrons fill subshells in order of increasing (n + l) energy values?",["Hund's Rule","Pauli Exclusion Principle","Aufbau Principle","Heisenberg Principle"],2,"The Aufbau principle governs filling order from lowest to highest energy based on (n + l)."],
+["What is the total number of orbitals in the principal energy shell n = 3?",["3","6","9","18"],2,"Total orbitals = n² = 3² = 9 (one 3s, three 3p, five 3d)."],
+["What is the mass of 0.25 moles of Calcium Carbonate (CaCO3)? [Ca=40, C=12, O=16]",["10.0 g","25.0 g","50.0 g","100.0 g"],1,"Molar mass of CaCO3 = 40 + 12 + (3 × 16) = 100 g/mol.\nMass = moles × molar mass = 0.25 × 100 = 25.0 g."],
+["Calculate the concentration in mol/dm³ of a solution containing 4.0 g of NaOH dissolved in 250 cm³ of solution. [Na=23, O=16, H=1]",["0.1 mol/dm³","0.2 mol/dm³","0.4 mol/dm³","1.0 mol/dm³"],2,"Molar mass NaOH = 40 g/mol.\nMoles = 4.0 / 40 = 0.1 mol.\nVolume = 250 / 1000 = 0.25 dm³.\nConcentration = 0.1 / 0.25 = 0.4 mol/dm³."],
+["An organic compound contains 40.0% Carbon, 6.7% Hydrogen, and 53.3% Oxygen by mass. What is its empirical formula? [C=12, H=1, O=16]",["CHO","CH2O","C2H4O2","CH3OH"],1,"Moles: C = 40.0/12 = 3.33; H = 6.7/1 = 6.70; O = 53.3/16 = 3.33.\nRatio = 1 : 2 : 1.\nEmpirical formula = CH2O."],
+["What volume of 0.2 mol/dm³ HCl is required to completely neutralize 25.0 cm³ of 0.1 mol/dm³ Na2CO3 solution?",["12.5 cm³","25.0 cm³","50.0 cm³","100.0 cm³"],1,"Na2CO3 + 2HCl → 2NaCl + H2O + CO2 (nA/nB = 2/1).\n(CA·VA)/(CB·VB) = 2/1 ⇒ (0.2 × VA)/(0.1 × 25) = 2\nVA = 25.0 cm³."],
+["How many molecules are present in 0.5 moles of water (H2O)? [Avogadro = 6.02 × 10²³]",["3.01 × 10²³","6.02 × 10²³","1.204 × 10²⁴","3.01 × 10²²"],0,"Molecules = 0.5 × 6.02 × 10²³ = 3.01 × 10²³ molecules."],
+["What volume of CO2 gas at s.t.p. is evolved when 10.0 g of CaCO3 is decomposed thermally? [Molar Vol = 22.4 dm³]",["1.12 dm³","2.24 dm³","4.48 dm³","22.4 dm³"],1,"CaCO3 → CaO + CO2.\nMoles CaCO3 = 10.0 / 100 = 0.1 mol.\nVolume CO2 = 0.1 × 22.4 = 2.24 dm³."],
+["If 5.0 g of H2 gas reacts with excess N2 to produce 17.0 g of NH3, what is the percentage yield? [H=1, N=14]",["60.0%","75.0%","60.4%","100.0%"],0,"N2 + 3H2 → 2NH3.\nTheoretical yield from 5.0 g H2 = (5.0 × 34) / 6 = 28.33 g NH3.\n% yield = (17.0 / 28.33) × 100 = 60.0%.\n(Note: your source key listed C, but the calculation gives exactly 60.0%, which is option A, so I corrected it.)"],
+["When 4.0 moles of H2 react with 3.0 moles of O2 to form H2O, which reactant is limiting and how many moles of H2O are produced?",["O2 is limiting; 6.0 mol H2O","H2 is limiting; 4.0 mol H2O","O2 is limiting; 3.0 mol H2O","H2 is limiting; 2.0 mol H2O"],1,"2H2 + O2 → 2H2O.\n4.0 mol H2 requires 2.0 mol O2 (3.0 mol available, so O2 is in excess).\nH2 is consumed first (limiting) and yields 4.0 mol H2O."],
+["What volume of water must be added to 50 cm³ of 2.0 mol/dm³ H2SO4 to dilute it to 0.5 mol/dm³?",["150 cm³","200 cm³","100 cm³","250 cm³"],0,"C1V1 = C2V2 ⇒ 2.0 × 50 = 0.5 × V2 ⇒ V2 = 200 cm³.\nWater added = 200 − 50 = 150 cm³."],
+["What is the percentage by mass of Nitrogen in Ammonium Nitrate (NH4NO3)? [N=14, H=1, O=16]",["17.5%","35.0%","28.0%","42.0%"],1,"Molar mass = 28 + 4 + 48 = 80 g/mol.\nNitrogen mass = 2 × 14 = 28 g.\n% N = (28 / 80) × 100 = 35.0%."],
+["A compound has an empirical formula of CH2 and a molar mass of 56 g/mol. What is its molecular formula?",["C2H4","C3H6","C4H8","C5H10"],2,"Empirical mass (CH2) = 14 g/mol.\nn = 56 / 14 = 4.\nMolecular formula = (CH2)₄ = C4H8."],
+["A 5.0 g sample of hydrated CuSO4.xH2O leaves 3.2 g of anhydrous CuSO4 after heating. What is x? [CuSO4=160, H2O=18]",["2","3","5","7"],2,"Mass H2O = 5.0 − 3.2 = 1.8 g.\nMoles CuSO4 = 3.2 / 160 = 0.02.\nMoles H2O = 1.8 / 18 = 0.10.\nx = 0.10 / 0.02 = 5."],
+["What mass of Magnesium is needed to react with excess HCl to produce 5.6 dm³ of H2 gas at s.t.p.? [Mg=24, Molar Vol=22.4]",["3.0 g","6.0 g","12.0 g","24.0 g"],1,"Mg + 2HCl → MgCl2 + H2.\nMoles H2 = 5.6 / 22.4 = 0.25 mol.\nMoles Mg = 0.25 mol (1:1).\nMass Mg = 0.25 × 24 = 6.0 g."],
+["What mass of anhydrous Na2CO3 is required to prepare 500 cm³ of a 0.1 mol/dm³ standard solution? [Na=23, C=12, O=16]",["2.65 g","5.30 g","10.60 g","53.00 g"],1,"Molar mass = 106 g/mol.\nMoles = 0.1 × 0.5 = 0.05 mol.\nMass = 0.05 × 106 = 5.30 g."],
+["The total number of subatomic particles (protons, neutrons, electrons) in a single neutral atom of Sodium-23 (²³Na) is: [Z=11]",["23","34","45","11"],1,"Protons = 11, electrons = 11, neutrons = 23 − 11 = 12.\nTotal = 11 + 11 + 12 = 34."]
+];
+const TOTAL=30,SECS=540,L="ABCD";
+let ans=Array(TOTAL).fill(null),cur=0,left=SECS,tid=null,done=false;
+const $=id=>document.getElementById(id),app=$("app");
+const fmt=s=>String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0");
+const logo=document.querySelector("header svg").outerHTML;
+
+function start(){ // begin test + countdown
+  ans.fill(null);cur=0;left=SECS;done=false;
+  $("timer").style.display="block";tick();
+  clearInterval(tid);tid=setInterval(()=>{left--;tick();if(left<=0)submit(true)},1000);render();
+}
+function tick(){$("tv").textContent=fmt(Math.max(left,0));$("timer").classList.toggle("low",left<=60)}
+
+function intro(){
+  $("timer").style.display="none";
+  app.innerHTML=`<div class="card hero" style="margin-top:12px">${logo.replace('<svg','<svg style="width:150px;height:150px"')}
+  <h1>CHM 101 · General Chemistry I</h1><div>Topic 1: Atomic Structure · Topic 2: Stoichiometry &amp; Mole Concepts</div>
+  <div class="rules">• 30 questions, one at a time<br>• Strict 9-minute (540 s) countdown<br>• Test auto-submits when time runs out<br>• Master Correction shown after submission</div>
+  <button class="btn g" onclick="start()">START TEST</button></div>`;
+}
+
+function render(){ // question screen
+  const [q,o]=Q[cur],a=ans[cur];
+  app.innerHTML=`<div class="bar"><i style="width:${(ans.filter(x=>x!==null).length/TOTAL)*100}%"></i></div>
+  <div class="card"><div class="meta"><span>Question ${cur+1} of ${TOTAL}</span><span>${cur<15?"Atomic Structure":"Stoichiometry"}</span></div>
+  <div class="q">${q}</div>
+  ${o.map((t,i)=>`<button class="opt ${a===i?"sel":""}" onclick="pick(${i})"><b>${L[i]}</b><span>${t}</span></button>`).join("")}
+  <div class="nav"><button class="btn" ${cur?"":"disabled"} onclick="go(-1)">◀ Prev</button><span class="sp"></span>
+  ${cur<TOTAL-1?`<button class="btn" onclick="go(1)">Next ▶</button>`:""}<button class="btn g" onclick="confirmSubmit()">Submit</button></div></div>
+  <div class="pal">${ans.map((x,i)=>`<button class="${x!==null?"done":""} ${i===cur?"cur":""}" onclick="cur=${i};render()">${i+1}</button>`).join("")}</div>`;
+}
+function pick(i){ans[cur]=i;render()}
+function go(d){cur+=d;render()}
+function confirmSubmit(){
+  const n=ans.filter(x=>x===null).length;
+  if(confirm(n?`${n} question(s) unanswered. Submit anyway?`:"Submit your test now?"))submit(false);
+}
+
+function submit(auto){ // grade + results
+  if(done)return;done=true;clearInterval(tid);
+  const ok=Q.map((q,i)=>ans[i]===q[2]),c=ok.filter(Boolean).length,sk=ans.filter(x=>x===null).length;
+  const t1=ok.slice(0,15).filter(Boolean).length,t2=ok.slice(15).filter(Boolean).length,pct=Math.round(c/TOTAL*100);
+  const grade=pct>=70?"Excellent":pct>=50?"Pass – keep revising":"Needs more work";
+  app.innerHTML=`<div class="card" style="margin-top:12px">${auto?"<div style='text-align:center;color:#b3261e'>⏰ Time is up – test auto-submitted</div>":""}
+  <div class="meta" style="justify-content:center">Final Performance</div><div class="score">${c} / ${TOTAL} · ${pct}%</div><div style="text-align:center;color:var(--mar);font-weight:700">${grade}</div>
+  <div class="grid3"><div class="stat"><b>${c}</b>Correct</div><div class="stat"><b>${TOTAL-c-sk}</b>Wrong</div><div class="stat"><b>${sk}</b>Unanswered</div><div class="stat"><b>${fmt(SECS-Math.max(left,0))}</b>Time used</div>
+  <div class="stat"><b>${t1}/15</b>Atomic Structure</div><div class="stat"><b>${t2}/15</b>Stoichiometry</div></div>
+  <div class="pal r">${ok.map((x,i)=>`<button class="${ans[i]===null?"sk":x?"ok":"no"}" onclick="document.getElementById('c${i}').scrollIntoView({behavior:'smooth'})">${i+1}</button>`).join("")}</div>
+  <div class="nav"><button class="btn g" onclick="filt(true)">Show missed only</button><button class="btn" onclick="filt(false)">Show all</button><span class="sp"></span><button class="btn" onclick="start()">Retake</button></div></div>
+  <div class="t" style="color:var(--gold2)">MASTER CORRECTION</div>
+  ${Q.map((q,i)=>`<div class="card cor ${ok[i]?"ok":""}" id="c${i}" data-ok="${ok[i]}" style="margin-top:10px"><div class="tag" style="color:${ok[i]?"var(--ok)":"var(--bad)"}">Q${i+1} · ${ok[i]?"✔ Correct":ans[i]===null?"✘ Not answered":"✘ Missed"}</div>
+  <div style="margin:6px 0">${q[0]}</div>
+  <div>Your answer: <b>${ans[i]===null?"—":L[ans[i]]+") "+q[1][ans[i]]}</b></div>
+  <div>Correct answer: <b style="color:var(--ok)">${L[q[2]]}) ${q[1][q[2]]}</b></div>
+  <div class="sol"><b>Step-by-step solution:</b><br>${q[3].replace(/\n/g,"<br>")}</div></div>`).join("")}`;
+  window.scrollTo(0,0);
+}
+function filt(m){document.querySelectorAll(".cor").forEach(e=>e.style.display=(m&&e.dataset.ok==="true")?"none":"block")}
+intro();
+</script></body></html>
